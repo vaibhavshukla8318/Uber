@@ -144,3 +144,62 @@ The `/users/logout` endpoint logs out the authenticated user by clearing their t
 ```
 
 ---
+
+### /drivers/register
+
+#### Description
+The `/drivers/register` endpoint is used to register a new driver in the system. It validates the input, hashes the password, and creates a new driver in the database. Upon successful registration, it returns a JSON object containing a token and driver details.
+
+#### URL
+- **Method**: `POST`
+- **Endpoint**: `/drivers/register`
+
+#### Headers
+- `Content-Type: application/json`
+
+#### Request Body
+```json
+{
+  "fullname": {
+    "firstname": "Jane",
+    "lastname": "Doe"
+  },
+  "email": "jane.doe@example.com",
+  "password": "SecurePass123",
+  "vehicle": {
+    "color": "Red",
+    "plate": "ABC123",
+    "capacity": 4,
+    "vehicleType": "car"
+  }
+}
+```
+
+#### Response
+**201 Created**
+```json
+{
+  "token": "<JWT_TOKEN>",
+  "driver": {
+    "_id": "<DRIVER_ID>",
+    "fullname": {
+      "firstname": "Jane",
+      "lastname": "Doe"
+    },
+    "email": "jane.doe@example.com",
+    "vehicle": {
+      "color": "Red",
+      "plate": "ABC123",
+      "capacity": 4,
+      "vehicleType": "car"
+    }
+  }
+}
+```
+
+**400 Bad Request**
+```json
+{
+  "message": "Driver already exists with this email"
+}
+```
