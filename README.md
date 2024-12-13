@@ -203,3 +203,116 @@ The `/drivers/register` endpoint is used to register a new driver in the system.
   "message": "Driver already exists with this email"
 }
 ```
+
+---
+
+### /drivers/login
+
+#### Description
+The `/drivers/login` endpoint is used to authenticate a driver by verifying the provided email and password. If successful, it returns a JSON object containing a token and driver details.
+
+#### URL
+- **Method**: `POST`
+- **Endpoint**: `/drivers/login`
+
+#### Headers
+- `Content-Type: application/json`
+
+#### Request Body
+```json
+{
+  "email": "jane.doe@example.com",
+  "password": "SecurePass123"
+}
+```
+
+#### Response
+**200 OK**
+```json
+{
+  "token": "<JWT_TOKEN>",
+  "driver": {
+    "_id": "<DRIVER_ID>",
+    "fullname": {
+      "firstname": "Jane",
+      "lastname": "Doe"
+    },
+    "email": "jane.doe@example.com",
+    "vehicle": {
+      "color": "Red",
+      "plate": "ABC123",
+      "capacity": 4,
+      "vehicleType": "car"
+    }
+  }
+}
+```
+
+**401 Unauthorized**
+```json
+{
+  "message": "Invalid email or password"
+}
+```
+
+---
+
+### /drivers/profile
+
+#### Description
+The `/drivers/profile` endpoint retrieves the authenticated driver's profile information.
+
+#### URL
+- **Method**: `GET`
+- **Endpoint**: `/drivers/profile`
+
+#### Headers
+- `Authorization: Bearer <JWT_TOKEN>`
+
+#### Response
+**200 OK**
+```json
+{
+  "_id": "<DRIVER_ID>",
+  "fullname": {
+    "firstname": "Jane",
+    "lastname": "Doe"
+  },
+  "email": "jane.doe@example.com",
+  "vehicle": {
+    "color": "Red",
+    "plate": "ABC123",
+    "capacity": 4,
+    "vehicleType": "car"
+  }
+}
+```
+
+**401 Unauthorized**
+```json
+{
+  "message": "Access denied. Unauthorized."
+}
+```
+
+---
+
+### /drivers/logout
+
+#### Description
+The `/drivers/logout` endpoint logs out the authenticated driver by clearing their token and invalidating it in the database.
+
+#### URL
+- **Method**: `GET`
+- **Endpoint**: `/drivers/logout`
+
+#### Headers
+- `Authorization: Bearer <JWT_TOKEN>`
+
+#### Response
+**200 OK**
+```json
+{
+  "message": "Logged out successfully"
+}
+```
