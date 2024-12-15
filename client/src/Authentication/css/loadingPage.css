@@ -1,0 +1,39 @@
+.loadingBlogPage{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--background);
+}
+
+.loadingBlogPage .spin{
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  border: 2px solid var(--background-text);
+  border-bottom: none;
+  animation: spin 0.5s infinite;
+}
+
+@keyframes spin{
+  0%{
+    transform: rotate(0deg);
+  }
+  100%{
+    transform: rotate(360deg);
+  }
+}
+
+.loadingBlogPage p{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  height: 90px;
+  width: 90px;
+  font-weight: 700;
+  color: var(--background-text);
+  border-radius: 50%;
+  border: 2px solid var(--background-text);
+}

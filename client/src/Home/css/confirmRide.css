@@ -1,0 +1,81 @@
+.ConfirmRide{
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.ConfirmRide .ConfirmRideImage{
+  position: absolute;
+  height: 40%;
+  width: 100%;
+}
+
+.ConfirmRide .backButton{
+  position: absolute;
+  font-size: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(245, 40, 145, 0.8);
+  height: 50px;
+  width: 50px;
+  cursor: pointer;
+  margin:10px;
+  padding: 5px;
+  border-radius: 50%;
+  z-index: 2;
+}
+
+.ride-info{
+  position: absolute;
+  height: 60%;
+  width: 100%;
+  bottom: 0;
+  overflow-y: scroll;
+  padding-bottom: 50px;
+}
+
+.ConfirmRide .vehicleInfo{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+.driverInfo{
+  text-align: right;
+}
+
+
+.destination-info .user-destination, .destination-info .ride-price{
+  display: flex;
+  gap: 15px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #ccc;
+  padding: 10px 20px;
+}
+
+.user-destination p, .ride-price p{
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.user-destination small, .ride-price small{
+  font-size: 1.1rem;
+  font-weight: 400;
+}
+
+.payment-button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 90%;
+  margin-left: 5%;
+}
+
+.payment-button:hover {
+  background-color: #218838;
+}

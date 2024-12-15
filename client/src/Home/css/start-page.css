@@ -1,0 +1,45 @@
+.startPage{
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+}
+.startPage .startPageImages{
+  position: absolute;
+   background: url("https://www.gifcen.com/wp-content/uploads/2021/05/car-gif-7.gif");
+   height: 80%;
+   width: 100%;
+   background-position: center;
+   background-size:cover;
+   background-repeat: no-repeat;
+}
+
+.startPage .linkContainer{
+  position: absolute;
+  height: 20%;
+  width: 100%;
+  top: 81.5%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  justify-content: center;
+  align-items: center;
+}
+
+.startPage .linkContainer .peoplePageLink, .startPage .linkContainer .driverPageLink{
+  text-decoration: none;
+  border: 2px solid #ccc;
+  color:#444;
+  font-size: 1.4rem;
+  font-weight: 500;
+  height: 45px;
+  width: 87%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.startPage .linkContainer .peoplePageLink:hover, .startPage .linkContainer .driverPageLink:hover{
+  background-color: #ccc;
+  color: #fff;
+}

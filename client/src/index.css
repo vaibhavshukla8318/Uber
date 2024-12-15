@@ -1,0 +1,20 @@
+
+/* Navbar.css or global.css */
+:root {
+  --navbar: #28a745;
+  --navbar-text: #fff;
+  --background: #e8f5e9;
+  --background-text: #444;
+
+}
+body{
+  background-color: var(--background);
+}
+.navbar {
+  background-color: var(--navbar);
+  color: var(--navbar-text);
+}
+
+.nav-link, .logo, .hamburger {
+  color: var(--navbar-text);
+}

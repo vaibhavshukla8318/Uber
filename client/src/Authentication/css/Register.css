@@ -1,0 +1,97 @@
+.register, .login{
+  font-family: Arial, sans-serif;
+  /* height: 100vh; */
+  width: 100%;
+  padding: 1rem;
+  /* animation: bgAnimation 10s ease infinite; */
+  /* overflow: hidden!important; */
+  margin-bottom: 50px;
+}
+
+@keyframes bgAnimation {
+  0% {
+    background: linear-gradient(135deg, #74b9ff, #a29bfe);
+  }
+  50% {
+    background: linear-gradient(135deg, #a29bfe, #74b9ff);
+  }
+  100% {
+    background: linear-gradient(135deg, #74b9ff, #a29bfe);
+  }
+}
+ .form-container {
+  background-color: #fff;
+  padding: 1.3rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+ .form h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+ .form-group {
+  margin-bottom: 0.7rem;
+}
+
+ label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 14px;
+  color: #555;
+}
+
+ input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+ input:focus {
+  border-color: #007BFF;
+  outline: none;
+}
+
+ .btn {
+  width: 100%;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #007BFF;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+ .btn:hover {
+  background-color: #0056b3;
+}
+
+ .forgot-password {
+  display: block;
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 14px;
+  color: #007BFF;
+  text-decoration: none;
+}
+
+ p a{
+  color: #007BFF;
+  text-decoration: none;
+}
+
+ .forgot-password:hover, p a:hover {
+  text-decoration: underline;
+}
+
+.register-link{
+  margin-top: 1rem;
+}

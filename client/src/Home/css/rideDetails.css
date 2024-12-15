@@ -1,0 +1,78 @@
+.confirm-ride {
+  height: 100%;
+  width: 100%;
+  overflow-y: auto;
+  padding-bottom: 20px;
+}
+
+.confirm-ride-button{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+  margin:10px 20px;
+}
+
+.confirm-ride-button p{
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.confirm-ride .back-button {
+  align-self: flex-start;
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  margin-bottom: 15px;
+}
+.border-bottom{
+  border-bottom: 1.2px solid #444;
+  margin-bottom: 50px;
+}
+
+.ride-details {
+  display: flex;
+  flex-direction: column;
+}
+.vehicleDetails{
+ text-align: center;
+ margin-bottom: 40px;
+}
+
+.userLocation, .userDestination, .confirmPrice{
+  display: flex;
+  gap: 20px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #ccc;
+  padding: 10px 20px;
+}
+.userLocation p, .userDestination p, .confirmPrice p{
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+.userLocation small, .userDestination small, .confirmPrice small{
+  font-size: 1.1rem;
+  font-weight: 400;
+}
+
+.confirm-ride .vehicle-image {
+  width: 150px;
+  height: 100px;
+  margin: 0 auto;
+}
+
+.confirm-button {
+  width: 90%;
+  margin-left: 5%;
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.confirm-button:hover {
+  background-color: #218838;
+}

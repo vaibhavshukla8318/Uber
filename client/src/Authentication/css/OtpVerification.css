@@ -1,0 +1,119 @@
+.otp{
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  background: linear-gradient(135deg, #74b9ff, #a29bfe);
+  padding: 1rem;
+  animation: bgAnimation 10s ease infinite;
+  overflow: hidden!important;
+}
+
+@keyframes bgAnimation {
+  0% {
+    background: linear-gradient(135deg, #74b9ff, #a29bfe);
+  }
+  50% {
+    background: linear-gradient(135deg, #a29bfe, #74b9ff);
+  }
+  100% {
+    background: linear-gradient(135deg, #74b9ff, #a29bfe);
+  }
+}
+.otp-container {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+  background: linear-gradient(to bottom, #6a11cb, #2575fc);
+
+}
+
+.otp-container h2 {
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.otp-form {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.otp-input {
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  font-size: 1.5rem;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.otp-input:focus {
+  border-color: #2575fc;
+  box-shadow: 0 0 5px rgba(37, 117, 252, 0.5);
+}
+
+.submit-btn {
+  background: #2575fc;
+  color: #fff;
+  border: none;
+  padding: 0.8rem 2rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.submit-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.submit-btn:hover:not(:disabled) {
+  background: #1e5ab6;
+}
+
+.resend-btn {
+  background: #6a11cb;
+  color: white;
+  border: none;
+  padding: 0.8rem 2rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: all 0.3s ease;
+}
+
+.resend-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.resend-btn:hover:not(:disabled) {
+  background: #5c0fba;
+}
+
+
+@media (max-width: 480px) {
+  .otp-input {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+
+  .submit-btn {
+    padding: 0.6rem 1.5rem;
+    font-size: 0.9rem;
+  }
+}
