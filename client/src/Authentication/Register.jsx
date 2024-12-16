@@ -53,7 +53,7 @@ const Register = () => {
       if (response.ok) {
         storeTokenInLS(data.token);
         toast.success('User registration successful!');
-        navigate('/');
+        navigate('/home');
       } else {
         toast.error(data.message || 'Registration failed. Please try again.');
       }

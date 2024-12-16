@@ -1,7 +1,10 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { gsap } from "gsap";
 import Vehicles from "./component/Vehicles";
 import "./css/home.css";
+import { IoMdLogOut } from "react-icons/io";
+import { useAuth } from "../store/auth";
+import {useNavigate} from 'react-router-dom';
 
 
 const locations = [
@@ -34,11 +37,13 @@ const locations = [
 
 
 
-
 const Home = () => {
   const [vehicle, setVehicle]= useState(false);
   const notFullHeightRef = useRef(null);
   const fullHeightRef = useRef(null);
+
+  const {user, logout} = useAuth();
+  const navigate = useNavigate();
 
   const handleExpand = () => {
     // Expand the full-height container
@@ -58,8 +63,22 @@ const Home = () => {
     setVehicle(false);
   };
 
+  const handleLogout = () => {
+    logout();
+    navigate("/auth/login");
+  }
+
+  useEffect(() => {
+    if (!user) {
+      navigate("/auth/login");
+    }
+  }, [user, navigate]);
+
   return (
     <div className="home">
+      <button className="logoutButton" onClick={handleLogout}>
+       <IoMdLogOut />
+      </button>
       <div className="image-container">
         <img
           src="https://www.hanbit.co.kr/data/editor/20210429161116_qvzgnfvw.gif"

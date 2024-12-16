@@ -34,7 +34,7 @@ const Login = () => {
       if (response.ok) {
         storeTokenInLS(data.token);
         toast.success('User login successful!');
-        navigate('/');
+        navigate('/home');
       } else {
         toast.error(data.message || 'Login failed. Please check your credentials.');
       }

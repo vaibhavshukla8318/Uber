@@ -33,32 +33,32 @@ export const AuthProvider = ({ children }) => {
     toast.success("Logged out successfully!");
   };
 
+
   // Fetch user data from the API
   const fetchUserData = async () => {
     if (!authorizationToken) {
-      console.error("Authorization token is missing.");
       return;
     }
 
-    // try {
-    //   const response = await fetch(`${API}/api/auth/user`, {
-    //     method: "GET",
-    //     headers: {
-    //       Authorization: authorizationToken,
-    //     },
-    //   });
+    try {
+      const response = await fetch(`${API}/api/users/profile`, {
+        method: "GET",
+        headers: {
+          Authorization: authorizationToken,
+        },
+      });
 
-    //   if (response.ok) {
-    //     const data = await response.json();
-    //     setUser(data.userData);
-    //   } else {
-    //     console.error("Failed to fetch user data");
-    //     setUser(null);
-    //   }
-    // } catch (error) {
-    //   console.error("Error fetching user data:", error);
-    //   setUser(null);
-    // }
+      if (response.ok) {
+        const data = await response.json();
+        setUser(data);
+      } else {
+        console.error("Failed to fetch user data");
+        setUser(null);
+      }
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+      setUser(null);
+    }
   };
 
   // Fetch blog data from the API
