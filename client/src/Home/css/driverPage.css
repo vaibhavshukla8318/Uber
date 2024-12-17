@@ -1,0 +1,200 @@
+.driver{
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow-y: hidden;
+}
+
+.driver>img{
+  position: absolute;
+  height: 60%;
+  width: 100%;
+}
+
+.driverWorks{
+  position: absolute;
+  width: 100%;
+  height: 40%;
+  bottom: 0;
+  padding: 15px;
+}
+
+.driverDetails{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.driverImage{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.driverImage>img{
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}
+.driverImage p{
+  font-size: 1.2rem;
+  font-weight:600;
+}
+.totalEarn{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-right: 15px;
+  margin-top: 10px;
+}
+.totalEarn p{
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.totalEarn small{
+  color: #777;
+  font-weight: 600;
+}
+
+.totalWorks{
+  height: 90px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  align-items: center;
+  background: rgba(128, 128, 128, 0.3);
+  border-radius: 15px;
+  margin-top: 20px;
+}
+
+.totalWorks div{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.totalWorks div .icon{
+  font-size: 1.7rem;
+}
+
+.totalWorks div p{
+  font-size: 1rem;
+}
+
+.totalWorks div small{
+  color: gray;
+}
+
+.ride, .confirmToStart{
+  position: absolute;
+ 
+  width: 100%;
+  background-color: #fff;
+  padding: 10px;
+  overflow: hidden;
+}
+.ride{
+  height: 75%;
+  bottom: 0;
+}
+
+.confirmToStart{
+  height: 85%;
+  bottom: 0%;
+  top: 100%;
+}
+.confirmButton{
+  height: 50px;
+  width: 90%;
+  background-color: #4CAF50;
+  border-radius: 15px;
+  border: none;
+  margin-top: 20px;
+  margin-left: 2%;
+  color: #fff;
+  font-size: 1.2rem;
+}
+
+
+.rideDetails{
+  margin-top: 20px;
+  width: 100%;
+}
+
+.rideDetails p{
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.rideDetails .userDetails{
+   height: 70px;
+   width: 100%;
+   background-color: gold;
+   border-radius: 10px;
+   margin-top: 20px;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   padding: 15px;
+}
+
+.userDetails p{
+  font-size: 1.1rem;
+}
+.userDetails .user{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.userDetails .user img{
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+}
+
+.ride-info{
+  height: auto;
+  overflow-y: hidden;
+  bottom: 0;
+  transform: translateY(30px);
+}
+
+.confirmToStart .ride-info{
+  bottom:unset;
+  transform: translateY(20px);
+}
+.inputContainer{
+  width: 90%;
+  margin-left:3%;
+  margin-top: 35px;
+}
+.inputContainer input{
+  font-size: 1.2rem;
+}
+.buttonContainer{
+  width: 100%;
+  padding:0 20px;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 20px;
+}
+
+.accept, .ignore{
+  height: 45px;
+  width: 110px;
+  border-radius: 15px;
+  border: none;
+}
+
+.ignore{
+  background-color: #8d8d8d;
+  color: #fff;
+}
+.accept{
+  background-color: #4CAF50;
+  color: #fff;
+}

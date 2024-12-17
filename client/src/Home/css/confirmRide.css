@@ -35,7 +35,7 @@
   padding-bottom: 50px;
 }
 
-.ConfirmRide .vehicleInfo{
+.ConfirmRide .vehicleInfo, .ride .vehicleInfo {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -54,13 +54,13 @@
   padding: 10px 20px;
 }
 
-.user-destination p, .ride-price p{
-  font-size: 1.3rem;
+.userLocation p ,.user-destination p, .ride-price p{
+  font-size: 1.2rem!important;
   font-weight: 600;
 }
 
-.user-destination small, .ride-price small{
-  font-size: 1.1rem;
+.userLocation small, .user-destination small, .ride-price small{
+  font-size: 1rem!important;
   font-weight: 400;
 }
 

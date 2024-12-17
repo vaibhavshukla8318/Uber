@@ -1,0 +1,66 @@
+.confirmButton {
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.confirmButton:hover {
+  background-color: #218838;
+}
+
+.confirmButton.completed {
+  background: linear-gradient(135deg, red, blue, green); /* Initial gradient */
+  color: #fff;
+  cursor: not-allowed;
+  transform: scale(1.05);
+  animation: fadeOut 2s forwards, gradientAnimation 3s infinite alternate;
+}
+
+/* Fade-out animation for opacity */
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}
+
+/* Gradient animation */
+@keyframes gradientAnimation {
+  0% {
+    background: linear-gradient(135deg, red, blue, green);
+  }
+  50% {
+    background: linear-gradient(135deg, green, red, blue);
+  }
+  100% {
+    background: linear-gradient(135deg, blue, green, red);
+  }
+}
+
+
+.circle-loader {
+  width: 24px;
+  height: 24px;
+  border: 3px solid #f3f3f3; /* Light gray background */
+  border-top: 3px solid #4caf50; /* Green color for loader */
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  display: inline-block;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
