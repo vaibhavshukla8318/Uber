@@ -1,4 +1,4 @@
-### Onging Project
+### Ongoing Project
 
 # User API Documentation
 
@@ -316,5 +316,57 @@ The `/drivers/logout` endpoint logs out the authenticated driver by clearing the
 ```json
 {
   "message": "Logged out successfully"
+}
+```
+
+---
+
+### /rides/create
+
+#### Description
+The `/rides/create` endpoint allows a user to create a ride request by providing pickup and destination addresses, and selecting a vehicle type. It calculates the fare based on distance and time.
+
+#### URL
+- **Method**: `POST`
+- **Endpoint**: `/rides/create`
+
+#### Headers
+- `Authorization: Bearer <JWT_TOKEN>`
+- `Content-Type: application/json`
+
+#### Request Body
+```json
+{
+  "pickup": "123 Main Street, City",
+  "destination": "456 Elm Street, City",
+  "vehicleType": "car"
+}
+```
+
+#### Response
+**201 Created**
+```json
+{
+  "_id": "<RIDE_ID>",
+  "user": "<USER_ID>",
+  "pickup": "123 Main Street, City",
+  "destination": "456 Elm Street, City",
+  "fare": 150,
+  "status": "pending",
+  "otp": "123456"
+}
+```
+
+**400 Bad Request**
+```json
+{
+  "message": "All fields are required"
+}
+```
+
+**401 Unauthorized**
+```json
+{
+  "message": "Access denied. Unauthorized."
 }
 ```
