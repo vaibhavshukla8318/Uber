@@ -1,8 +1,49 @@
-import React, {useRef} from 'react'
+import React, {useRef, useState} from 'react'
 import { gsap } from "gsap";
-import {Link} from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
+import { useAuth } from '../../store/auth';
+import { toast } from 'react-toastify';
 
-const ConfirmToStart = () => {
+const ConfirmToStart = ({ride}) => {
+  const [otp, setOtp] = useState('');
+  const { API, authorizationToken } = useAuth(); // Get API base URL and auth token from context
+
+  const navigate = useNavigate();
+
+  const handleOtpChange = (event) => {
+    setOtp(event.target.value);
+  };
+
+  const handleConfirmClick = async () => {
+    if (otp.length !== 6) {
+      toast.error('OTP must be 6 digits');
+      return;
+    }
+
+    try {
+      const rideId = ride._id; // Replace this with the actual ride ID as required
+      const response = await fetch(`${API}/api/rides/start-ride?rideId=${rideId}&otp=${otp}`, {
+        method: 'GET',
+        headers: {
+          Authorization: authorizationToken,
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        toast.success('Ride started successfully!');
+        navigate('/confirm-ride')
+        console.log('Ride started:', data);
+      } else {
+        const error = await response.json();
+        toast.error(error.message || 'Failed to start ride');
+      }
+    } catch (error) {
+      console.error('Error starting ride:', error);
+      toast.error('An error occurred while starting the ride');
+    }
+  };
  
   return (
       <div className="rideDetails">
@@ -39,13 +80,17 @@ const ConfirmToStart = () => {
             </div>
           </div>
         </div>
-        <div className='inputContainer'>
-          <input type="text" placeholder="Enter your OTP" />
+        <div className="inputContainer">
+          <input
+            type="text"
+            placeholder="Enter your OTP"
+            value={otp}
+            onChange={handleOtpChange}
+          />
         </div>
-
-        <Link to="/confirm-ride">
-          <button className='confirmButton'>Confirn</button>
-        </Link>
+        <button className="confirmButton" onClick={handleConfirmClick}>
+          Confirm
+        </button>
         </div>
       </div>
   )

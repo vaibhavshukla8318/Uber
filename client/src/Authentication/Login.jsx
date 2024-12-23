@@ -32,7 +32,9 @@ const Login = () => {
       const data = await response.json();
 
       if (response.ok) {
-        storeTokenInLS(data.token);
+        // localStorage.setItem("authToken", data.token);
+        // localStorage.setItem("userId", data.userId);
+        storeTokenInLS(data.token, data.userId);
         toast.success('User login successful!');
         navigate('/home');
       } else {

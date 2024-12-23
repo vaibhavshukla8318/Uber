@@ -1,5 +1,6 @@
 // map.services.js
 const axios = require('axios');
+const driverModel = require('../models/driver.model')
 
 // Function to get coordinates from an address using Google Maps Geocoding API
 const getAddressCoordinates = async (address) => {
@@ -18,6 +19,9 @@ const getAddressCoordinates = async (address) => {
      
       const location = response.data.results[0].geometry.location;
 
+      if (!location || isNaN(location.lat) || isNaN(location.lng)) {
+        throw new Error('Invalid coordinates from API');
+    }
       // Return latitude and longitude
       return {
         lat: location.lat,
@@ -77,4 +81,22 @@ const getAutoCompleteSuggestions = async(input) =>{
   }
 }
 
-module.exports = { getAddressCoordinates, getDistanceTime, getAutoCompleteSuggestions };
+
+const getDriversInTheRadius = async (lat, lng, radius) =>{
+
+
+  // radius in km
+  const driver = await driverModel.find({
+    location: {
+      $geoWithin: {
+        $centerSphere: [
+          [lat, lng],
+          radius / 6371 
+        ]
+      }
+    }
+  }) 
+  return driver;
+}
+
+module.exports = { getAddressCoordinates, getDistanceTime, getAutoCompleteSuggestions, getDriversInTheRadius };

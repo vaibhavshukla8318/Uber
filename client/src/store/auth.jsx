@@ -11,8 +11,9 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem("token") || null);
   const [user, setUser] = useState(null);
-  const [blog, setBlog] = useState(null);
-
+  const [driver, setDriver] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
+// 
   // API Base URL (use environment variable if available, fallback to localhost)
   const API = import.meta.env.VITE_API_URL;
   
@@ -36,11 +37,9 @@ export const AuthProvider = ({ children }) => {
 
   // Fetch user data from the API
   const fetchUserData = async () => {
-    if (!authorizationToken) {
-      return;
-    }
 
     try {
+      setIsLoading(true);
       const response = await fetch(`${API}/api/users/profile`, {
         method: "GET",
         headers: {
@@ -51,45 +50,50 @@ export const AuthProvider = ({ children }) => {
       if (response.ok) {
         const data = await response.json();
         setUser(data);
-      } else {
-        console.error("Failed to fetch user data");
-        setUser(null);
       }
     } catch (error) {
       console.error("Error fetching user data:", error);
       setUser(null);
+    } finally {
+      setIsLoading(false);
     }
   };
 
-  // Fetch blog data from the API
-  const fetchBlogData = async () => {
-    // try {
-    //   const response = await fetch(`${API}/api/blog/allblogs`, {
-    //     method: "GET",
-    //   });
-      
-    //   if (response.ok) {
-    //     const data = await response.json();
-    //     // console.log("this data is coming from blog data" , data);
-    //     setBlog(data);
-    //   } else {
-    //     console.error("Failed to fetch user data");
-    //   }
-    // } catch (error) {
-    //   console.error("Error fetching Blog data:", error);
-    // }
-  }
 
-  
+  // Fetch driver data from the API
+  const fetchDriverData = async () => {
+
+    try {
+      setIsLoading(true);
+      const response = await fetch(`${API}/api/drivers/profile`, {
+        method: "GET",
+        headers: {
+          Authorization: authorizationToken,
+        },
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setDriver(data);
+      } else {
+        console.error("Failed to fetch user data");
+        setDriver(null);
+      }
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+      setDriver(null);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
 
   // Effect to fetch user details on initial render or token change
   useEffect(() => {
       fetchUserData();
-      fetchBlogData();
+      fetchDriverData()
   }, []);
 
-
-  // AuthProvider.js
 
   // Context value to be provided to consumers
   const value = {
@@ -97,8 +101,9 @@ export const AuthProvider = ({ children }) => {
     storeTokenInLS,
     logout,
     user,
-    blog,
+    driver,
     authorizationToken,
+    isLoading,
     API,
   };
   

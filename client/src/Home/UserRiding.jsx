@@ -1,18 +1,13 @@
-import '../css/confirmRide.css';
-import { useSocket } from '../../store/SocketContext';
-import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import './css/confirmRide.css';
 
-const ConfirmRide = ({ vehicle, onBack, rideConfirm }) => {
-  const { socket } = useSocket();
-  const navigate = useNavigate();
+const UserRiding = () => {
+  const { state } = useLocation();
+  const { vehicle, rideConfirm } = state || {};
 
-  socket.on('ride-started', (ride) => {
-    navigate('/user-riding', { state: { vehicle, rideConfirm } });
-  });
 
   return (
     <div className="ConfirmRide">
-      <button className="backButton" onClick={onBack}>⬅</button>
       <img
         className="ConfirmRideImage"
         src="https://www.hanbit.co.kr/data/editor/20210429161116_qvzgnfvw.gif"
@@ -21,8 +16,8 @@ const ConfirmRide = ({ vehicle, onBack, rideConfirm }) => {
       <div className="ride-info">
         <div className="vehicleInfo">
           <img
-            src={vehicle.image}
-            alt={vehicle.name}
+            src={vehicle?.image || 'https://via.placeholder.com/150'}
+            alt={vehicle?.name || 'Vehicle'}
             className="vehicle-image"
           />
 
@@ -33,8 +28,7 @@ const ConfirmRide = ({ vehicle, onBack, rideConfirm }) => {
                 rideConfirm?.driver?.fullname?.lastname}
             </h2>
             <h4>{rideConfirm?.driver?.vehicle?.plate}</h4>
-            {vehicle.name} {vehicle.seat}
-            <p style={{ color: 'red', fontSize: '1.3rem' }}>{rideConfirm?.otp}</p>
+            <p>{vehicle?.name}</p>
           </div>
         </div>
 
@@ -54,9 +48,10 @@ const ConfirmRide = ({ vehicle, onBack, rideConfirm }) => {
             </div>
           </div>
         </div>
+        <button className="payment-button">Make Payment</button>
       </div>
     </div>
   );
 };
 
-export default ConfirmRide;
+export default UserRiding;

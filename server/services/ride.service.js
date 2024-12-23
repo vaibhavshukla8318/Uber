@@ -1,7 +1,10 @@
+// ride.services
+
 const { verify } = require('jsonwebtoken');
 const rideModel = require('../models/ride.model');
 const mapService = require('./maps.services');
-const crypto = require('crypto')
+const crypto = require('crypto');
+const { sendMessageToSocketId } = require('../socket');
 
 async function getFare(pickup, destination) {
   if(!pickup || !destination){
@@ -28,15 +31,17 @@ async function getFare(pickup, destination) {
   }
 
   const fare = {
-    auto: baseFare.auto + ((distanceTime.distance.value / 1000) * perKmRate.auto) + ((distanceTime.duration.value / 60) * perMinRate.auto),
+    auto: Math.round(baseFare.auto + ((distanceTime.distance.value / 1000) * perKmRate.auto) + ((distanceTime.duration.value / 60) * perMinRate.auto)),
 
-    car: baseFare.car + ((distanceTime.distance.value / 1000) * perKmRate.car) + ((distanceTime.duration.value / 60) * perMinRate.car),
+    car: Math.round(baseFare.car + ((distanceTime.distance.value / 1000) * perKmRate.car) + ((distanceTime.duration.value / 60) * perMinRate.car)),
 
-    bike: baseFare.bike + ((distanceTime.distance.value / 1000) * perKmRate.bike) + ((distanceTime.duration.value / 60) * perMinRate.bike)
+    bike: Math.round(baseFare.bike + ((distanceTime.distance.value / 1000) * perKmRate.bike) + ((distanceTime.duration.value / 60) * perMinRate.bike))
   }
 
   return fare;
 }
+
+module.exports = getFare;
 
 function getOtp(num){
   function generateOtp(num){
@@ -64,4 +69,55 @@ module.exports.createRide = async ({
   })
 
   return ride;
+}
+
+module.exports.confirmRide = async ({rideId, driver})=>{
+  if(!rideId){
+    throw new Error('Ride id is required');
+  }
+
+   await rideModel.findOneAndUpdate({_id:rideId},
+    {
+      status: 'accepted',
+      driver: driver._id
+    }
+   )
+   const ride = await rideModel.findOne({_id:rideId}).populate('user').populate('driver').select('+otp');
+   if(!ride){
+     throw new Error('Ride not found');
+   }
+
+    return ride;
+
+}
+
+
+module.exports.startRide = async({rideId, otp, driver}) =>{
+  if(!rideId ||!otp){
+    throw new Error('Ride id and OTP are required');
+  }
+  const ride = await rideModel.findOne({_id:rideId}).populate('user').populate('driver').select('+otp');
+  if(!ride){
+    throw new Error('Ride not found');
+    }
+    if(ride.otp !== otp){
+      throw new Error('Invalid OTP');
+    }
+    if(ride.status !== 'accepted'){
+      throw new Error('Ride not accepted');
+    }
+
+    await rideModel.findOneAndUpdate({_id:rideId},
+      {
+        status: 'ongoing'
+      }
+    )
+
+    sendMessageToSocketId(ride.user.socketId, {
+      event:'ride-started',
+      data: ride
+    })
+
+    return ride;
+    
 }
